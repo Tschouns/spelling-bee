@@ -7,18 +7,24 @@ Console.WriteLine("Hello, World!");
 var wordFilePath = "Data\\words_alpha.txt";
 var rules = new IWordRule[]
 {
+    new MustHaveMinimumLengthRule(4),
     new MustContainRule('i'),
     new MustConsistOfRule('a', 'c', 'i', 'm', 'o', 'r', 't'),
 };
 
 var processor = new WordFileProcessor();
 var isCancelled = false;
+var count = 0;
 var task = Task.Run(() =>
     {
         processor.ProcessFile(
             wordFilePath,
             rules,
-            w => Console.WriteLine("> " + w),
+            w =>
+            {
+                count++;
+                Console.WriteLine($"{count} > " + w);
+            },
             () => isCancelled);
 
         Console.WriteLine("All done.");
