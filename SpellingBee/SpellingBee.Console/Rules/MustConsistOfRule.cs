@@ -12,6 +12,11 @@ namespace SpellingBee.Console.Rules
                 .ToArray();
         }
 
+        public string GetDescription()
+        {
+            return $"Must consist of the following characters: {string.Join(", ", this.mustConsistOfChars)}";
+        }
+
         public bool CheckWord(string word)
         {
             var wordLower = word.ToLower();

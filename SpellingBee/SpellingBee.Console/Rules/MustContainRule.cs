@@ -11,6 +11,11 @@
                 .ToArray();
         }
 
+        public string GetDescription()
+        {
+            return $"Must contain the following characters: {string.Join(", ", this.mustContainChars)}";
+        }
+
         public bool CheckWord(string word)
         {
             var wordLower = word.ToLower();
