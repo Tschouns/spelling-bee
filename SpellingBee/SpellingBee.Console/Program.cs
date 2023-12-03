@@ -6,8 +6,9 @@ var wordFilePath = "Data\\words_alpha.txt";
 var rules = new IWordRule[]
 {
     new MustHaveMinimumLengthRule(4),
-    new MustContainRule('i'),
-    new MustConsistOfRule('a', 'c', 'i', 'm', 'o', 'r', 't'),
+    new MustContainRule('f'),
+    //new MustContainRule('b', 'e', 'f', 'l', 'o', 't', 'u'),
+    new MustConsistOfRule('b', 'e', 'f', 'l', 'o', 't', 'u'),
 };
 
 // Write rules.
@@ -28,6 +29,9 @@ var task = Task.Run(() =>
             {
                 count++;
                 Console.WriteLine($"{count} > " + w);
+
+                // Slow down -- for testing the distributed IDE (WIPRO).
+                Thread.Sleep(200);
             },
             () => isCancelled);
 
@@ -44,4 +48,4 @@ task.Wait();
 Console.WriteLine("Done.");
 
 // Wait for user:
-Console.ReadLine();
+Thread.Sleep(2000);
