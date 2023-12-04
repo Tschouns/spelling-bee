@@ -20,32 +20,48 @@ foreach (var rule in rules)
 var processor = new WordFileProcessor();
 var isCancelled = false;
 var count = 0;
-var task = Task.Run(() =>
+
+//var task = Task.Run(() =>
+//    {
+//        processor.ProcessFile(
+//            wordFilePath,
+//            rules,
+//            w =>
+//            {
+//                count++;
+//                Console.WriteLine($"{count} > " + w);
+
+//                // Slow down -- for testing the distributed IDE (WIPRO).
+//                Thread.Sleep(200);
+//            },
+//            () => isCancelled);
+
+//        Console.WriteLine("All done.");
+//    });
+
+processor.ProcessFile(
+    wordFilePath,
+    rules,
+    w =>
     {
-        processor.ProcessFile(
-            wordFilePath,
-            rules,
-            w =>
-            {
-                count++;
-                Console.WriteLine($"{count} > " + w);
+        count++;
+        Console.WriteLine($"{count} > " + w);
 
-                // Slow down -- for testing the distributed IDE (WIPRO).
-                Thread.Sleep(200);
-            },
-            () => isCancelled);
+        // Slow down -- for testing the distributed IDE (WIPRO).
+        Thread.Sleep(200);
+    },
+    () => isCancelled);
 
-        Console.WriteLine("All done.");
-    });
+Console.WriteLine("All done.");
 
-// Wait for user:
-Console.ReadLine();
+//// Wait for user:
+//Console.ReadLine();
 
-Console.WriteLine("User cancelled...");
-isCancelled = true;
+//Console.WriteLine("User cancelled...");
+//isCancelled = true;
 
-task.Wait();
-Console.WriteLine("Done.");
+//task.Wait();
+//Console.WriteLine("Done.");
 
 // Wait for user:
 Thread.Sleep(2000);
