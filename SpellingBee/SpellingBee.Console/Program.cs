@@ -48,7 +48,7 @@ processor.ProcessFile(
         Console.WriteLine($"{count} > " + w);
 
         // Slow down -- for testing the distributed IDE (WIPRO).
-        Thread.Sleep(200);
+        //Thread.Sleep(200);
     },
     () => isCancelled);
 
