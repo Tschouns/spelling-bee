@@ -1,4 +1,6 @@
-﻿namespace SpellingBee.Console.Rules
+﻿using SpellingBee.Base.RuntimeChecks;
+
+namespace SpellingBee.Console.Rules
 {
     public class MustContainRule : IWordRule
     {
@@ -18,6 +20,8 @@
 
         public bool CheckWord(string word)
         {
+            Argument.AssertNotEmpty(word, nameof(word));
+
             var wordLower = word.ToLower();
 
             foreach (var c in this.mustContainChars)

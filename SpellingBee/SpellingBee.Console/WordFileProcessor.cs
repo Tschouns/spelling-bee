@@ -1,4 +1,5 @@
 ﻿
+using SpellingBee.Base.RuntimeChecks;
 using SpellingBee.Console.Rules;
 
 namespace SpellingBee.Console
@@ -7,6 +8,11 @@ namespace SpellingBee.Console
     {
         public void ProcessFile(string filePath, IEnumerable<IWordRule> rules, Action<string> foundWordCallback, Func<bool> cancel)
         {
+            Argument.AssertNotEmpty(filePath, nameof(filePath));
+            Argument.AssertNotNull(rules, nameof(rules));
+            Argument.AssertNotNull(foundWordCallback, nameof(foundWordCallback));
+            Argument.AssertNotNull(cancel, nameof(cancel));
+
             using var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
             using var reader = new StreamReader(fileStream);
 

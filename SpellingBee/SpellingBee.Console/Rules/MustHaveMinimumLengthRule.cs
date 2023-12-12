@@ -1,4 +1,6 @@
-﻿namespace SpellingBee.Console.Rules
+﻿using SpellingBee.Base.RuntimeChecks;
+
+namespace SpellingBee.Console.Rules
 {
     public class MustHaveMinimumLengthRule : IWordRule
     {
@@ -16,6 +18,8 @@
 
         public bool CheckWord(string word)
         {
+            Argument.AssertNotEmpty(word, nameof(word));
+
             return word.Length >= this.minimumLength;
         }
     }

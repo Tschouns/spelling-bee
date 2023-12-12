@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SpellingBee.Base\SpellingBee.Base.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Data\words_alpha.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

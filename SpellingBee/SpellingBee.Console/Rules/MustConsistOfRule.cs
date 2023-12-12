@@ -1,4 +1,6 @@
 ﻿
+using SpellingBee.Base.RuntimeChecks;
+
 namespace SpellingBee.Console.Rules
 {
     public class MustConsistOfRule : IWordRule
@@ -19,6 +21,8 @@ namespace SpellingBee.Console.Rules
 
         public bool CheckWord(string word)
         {
+            Argument.AssertNotEmpty(word, nameof(word));
+
             var wordLower = word.ToLower();
 
             foreach (var c in wordLower)
